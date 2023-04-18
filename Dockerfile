@@ -1,7 +1,11 @@
-# syntax=docker/dockerfile:1
+FROM python:3.9-slim
 
-FROM python:3.9-alpine
+WORKDIR /home/app_user
 
-WORKDIR /app
-COPY cryptopt.py ./
-CMD [ "python", "./cryptopt.py"]
+COPY cryptopt.py /home/app_user
+
+ENV API_KEY=""
+
+RUN chmod +x cryptopt.py
+
+CMD [ "bash", "-c", "read -p 'Please enter your CoinMarketcap API key: ' API_KEY && export API_KEY=$API_KEY && bash" ]
