@@ -47,7 +47,6 @@ def save_portfolio(portfolio_id: str, holdings: str) -> None:
     with open(DATA_FILE, "w") as f:
         json.dump(data, f)
 
-
 def show_portfolio(portfolio_id: str, fiat: str = "AUD") -> None:
     """Show the approximate valuation of a portfolio in the specified fiat currency."""
     data = {}
@@ -65,8 +64,8 @@ def show_portfolio(portfolio_id: str, fiat: str = "AUD") -> None:
             continue
         value = price * quantity
         total_value += value
-        print(f"{symbol} {value:,.2f}")
-    print(f"Total portfolio value: {total_value:,.2f} {fiat}")
+        print(f"{symbol} {value:,.3f}")
+    print(f"Total portfolio value: {total_value:,.3f} {fiat}")
 
 def validate_portfolio_id(portfolio_id):
     pattern = r'^[a-zA-Z0-9_-]+$'
